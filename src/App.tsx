@@ -4,7 +4,8 @@ export function App() {
   return (
     <div>
       sdf
-      <Button>asdfadsf</Button>
+      <Button variant={'secondary'}>asdfadsf</Button>
+      <Button as={'a'} children={'wdreras'} href={'wdreras'} variant={'primary'} />
     </div>
   )
 }
