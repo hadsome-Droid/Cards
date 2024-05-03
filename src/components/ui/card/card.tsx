@@ -3,7 +3,7 @@ import { ComponentPropsWithRef, ReactNode } from 'react'
 import s from './card.module.scss'
 
 type Props = {
-  children: ReactNode
+  children?: ReactNode
 } & ComponentPropsWithRef<'div'>
 
 export const Card = ({ children, ...rest }: Props) => {
