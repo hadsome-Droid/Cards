@@ -4,7 +4,7 @@ import s from './input.module.scss'
 
 export type PropsType = {
   //className?: string
-  className?: 'active' | 'default' | 'error' | null | undefined
+  className?: 'active' | 'default' | 'disabled' | 'error' | 'focus' | 'hover'
   disabled?: boolean
   maxLength?: number
   minLength?: number

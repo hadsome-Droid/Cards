@@ -37,48 +37,40 @@ export const Error: Story = {
     value: 'initialValue',
   },
 }
-// import { Meta, Story } from '@storybook/react';
-// import { Input, PropsType} from '../input/input';
-//
-// export default {
-//   title: 'Components/Input',
-//   component: Input,
-//   argTypes: {
-//     className: {
-//       control: { type: 'select', options: ['active', 'default', 'error', null] },
-//     },
-//     type: {
-//       control: { type: 'select', options: ['date', 'email', 'number', 'password', 'text'] },
-//     }
-//   }
-// } satisfies Meta<typeof Input>
-//
-// const Template: Story<PropsType> = (args: any) => <Input {...args}/>
-//
-//
-// export const Default = Template.bind({});
-// Default.args = {
-//   className: 'default',
-//   name: 'default',
-//   onChange: (e) => console.log(e),
-//   type: 'text',
-//   value: '',
-// };
-//
-// export const Active = Template.bind({});
-// Active.args = {
-//   className: 'active',
-//   name: 'active',
-//   onChange: (e) => console.log(e),
-//   type: 'text',
-//   value: 'Active',
-// };
-//
-// export const Error = Template.bind({});
-// Error.args = {
-//   className: 'error',
-//   name: 'error',
-//   onChange: (e) => console.log(e),
-//   type: 'text',
-//   value: 'Error',
-// };
+
+export const Active: Story = {
+  args: {
+    className: 'active',
+    name: 'string',
+    onChange: e => console.log(e),
+    type: 'text',
+    value: 'initialValue',
+  },
+}
+export const Disabled: Story = {
+  args: {
+    className: 'disabled',
+    name: 'string',
+    onChange: e => console.log(e),
+    type: 'text',
+    value: 'initialValue',
+  },
+}
+export const Focus: Story = {
+  args: {
+    className: 'focus',
+    name: 'string',
+    onChange: e => console.log(e),
+    type: 'text',
+    value: 'initialValue',
+  },
+}
+export const Hover: Story = {
+  args: {
+    className: 'hover',
+    name: 'string',
+    onChange: e => console.log(e),
+    type: 'text',
+    value: 'initialValue',
+  },
+}
