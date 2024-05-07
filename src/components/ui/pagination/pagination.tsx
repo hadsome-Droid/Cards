@@ -29,23 +29,31 @@ export const Pagination = ({ needToShowItems, totalItems }: Props) => {
     }
   }
 
-  const maxVisiblePages = 3
-
   const pageNumbers = useMemo(() => {
     const numbers = [1]
 
-    console.log(numbers)
-    if (activePage > maxVisiblePages + 1) {
-      numbers.push(-1)
-    }
-    for (let i = Math.max(2, activePage - 1); i <= Math.min(activePage + 1, totalPages - 1); i++) {
-      numbers.push(i)
-    }
-    if (activePage < totalPages - maxVisiblePages) {
-      numbers.push(-2)
-    }
-    if (totalPages > 1) {
-      numbers.push(totalPages)
+    if (totalPages > 5) {
+      if (activePage === 1 || activePage === 2) {
+        for (let i = 2; i <= 5; i++) {
+          numbers.push(i)
+        }
+        numbers.push(-2, totalPages)
+      } else if (activePage === totalPages - 1 || activePage === totalPages) {
+        numbers.push(-1)
+        for (let i = totalPages - 3; i <= totalPages; i++) {
+          numbers.push(i)
+        }
+      } else {
+        numbers.push(-1)
+        for (let i = activePage - 1; i <= activePage + 1; i++) {
+          numbers.push(i)
+        }
+        numbers.push(-2, totalPages)
+      }
+    } else {
+      for (let i = 2; i <= totalPages; i++) {
+        numbers.push(i)
+      }
     }
 
     return numbers

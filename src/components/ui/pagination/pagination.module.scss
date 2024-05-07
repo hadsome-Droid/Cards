@@ -24,13 +24,17 @@
   height: 24px;
   text-align: center;
   border-radius: 2px;
-  
+
+
 }
 
 
 .activePage{
-  color: var(--color-dark-900);
   background-color: var(--color-light-100);
+
+  & a {
+    color: var(--color-dark-900);
+  }
 }
 
 
@@ -57,6 +61,8 @@
     outline: none;
   }
 }
+
+
 
 .selectBox{
   & span{
