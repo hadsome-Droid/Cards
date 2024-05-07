@@ -1,0 +1,68 @@
+.default {
+  left: 12px;
+
+  width: 284px;
+  height: 36px;
+  padding-left: 12px;
+
+  color: var(--color-dark-100);
+
+  background-color: var(--color-dark-900);
+  border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
+}
+
+.active {
+  width: 284px;
+  height: 36px;
+
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-900);
+  border: 1px solid var(--color-light-100);
+  border-radius: 2px;
+}
+
+.error {
+  width: 284px;
+  height: 36px;
+
+  color: var(--color-danger-300);
+
+  background-color: var(--color-dark-900);
+  border: 1px solid var(--color-danger-300);
+  border-radius: 2px;
+}
+
+.hover {
+  width: 284px;
+  height: 36px;
+
+  color: var(--color-dark-100);
+
+  background-color: var(--color-dark-700);
+  border: 1px solid var(--color-dark-100);
+  border-radius: 2px;
+}
+
+.focus {
+  width: 284px;
+  height: 36px;
+
+  color: var(--color-dark-100);
+
+  background-color: var(--color-dark-900);
+  border: 2px solid var(--color-info-700);
+  border-radius: 2px;
+}
+
+.disabled {
+  width: 284px;
+  height: 36px;
+
+  color: var(--color-dark-300);
+
+  background-color: var(--color-dark-900);
+  border: 2px solid var(--color-dark-300);
+  border-radius: 1px;
+}
