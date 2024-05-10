@@ -10,6 +10,8 @@ html {
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 input,
@@ -23,6 +25,10 @@ option {
   font-weight: inherit;
   font-style: inherit;
   color: inherit;
+}
+
+a {
+  text-decoration: none;
 }
 
 a:visited {
