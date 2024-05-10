@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card/card'
+import { Pagination } from '@/components/ui/pagination/pagination'
 
 
 export function App() {
@@ -27,6 +28,7 @@ export function App() {
       <Card>
         <Button>asdfadsf</Button>
       </Card>
+      <Pagination needToShowItems={5} totalItems={50} />
     </div>
   )
 }
