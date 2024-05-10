@@ -13,9 +13,25 @@
 
   & button {
     cursor: pointer;
+
+    width: 24px;
+    height: 24px;
+
     color: var(--color-dark-100);
+
     background-color: var(--color-dark-900);
     border: none;
+
+    &:focus{
+      color: var(--color-info-900);
+      outline: none;
+
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: 0.5;
+    }
   }
 }
 
@@ -23,14 +39,12 @@
   width: 24px;
   height: 24px;
   text-align: center;
-  border-radius: 2px;
-
-
 }
 
 
 .activePage{
   background-color: var(--color-light-100);
+  border-radius: 2px;
 
   & a {
     color: var(--color-dark-900);
@@ -49,6 +63,8 @@
   color: var(--color-light-100);
 
   border: 2px solid transparent;
+  border-radius: 2px;
+
 
 
   &:hover{
@@ -57,11 +73,9 @@
 
   &:focus{
     border-color: var(--color-info-900);
-    border-radius: 2px;
     outline: none;
   }
 }
-
 
 
 .selectBox{

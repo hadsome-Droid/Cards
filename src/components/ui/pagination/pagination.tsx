@@ -4,8 +4,16 @@ import s from './pagination.module.scss'
 
 type Props = {
   needToShowItems: number
+  onItemsPerPageChange?: (itemsPerPage: number) => void
   totalItems: number
 }
+
+// const itemsPerPageOptions = [
+//   { label: '10', value: 10 },
+//   { label: '20', value: 20 },
+//   { label: '50', value: 50 },
+//   { label: '100', value: 100 },
+// ]
 
 export const Pagination = ({ needToShowItems, totalItems }: Props) => {
   const [activePage, setActivePage] = useState(1)
@@ -62,7 +70,9 @@ export const Pagination = ({ needToShowItems, totalItems }: Props) => {
   return (
     <div className={s.box}>
       <ul className={s.pagination}>
-        <button onClick={decrementHandler}>{'<'}</button>
+        <button disabled={activePage === 1} onClick={decrementHandler}>
+          {'<'}
+        </button>
         {pageNumbers.map(number =>
           number >= 0 ? (
             <li
@@ -77,11 +87,22 @@ export const Pagination = ({ needToShowItems, totalItems }: Props) => {
             <li key={number}>...</li>
           )
         )}
-        <button onClick={incrementHandler}>{'>'}</button>
+        <button disabled={activePage === totalPages} onClick={incrementHandler}>
+          {'>'}
+        </button>
       </ul>
       <div className={s.selectBox}>
         <p>
-          Показать на <span>Тут должен быть Select =)</span> странице
+          Показать на{' '}
+          <span>
+            Тут должен быть селект
+            {/*<selelct*/}
+            {/*  onChange={selectedOption => onItemsPerPageChange(selectedOption.value)}*/}
+            {/*  options={itemsPerPageOptions}*/}
+            {/*  value={itemsPerPageOptions.find(option => option.value === needToShowItems)}*/}
+            {/*/>*/}
+          </span>{' '}
+          странице
         </p>
       </div>
     </div>
