@@ -1,10 +1,12 @@
 import { MouseEvent, useMemo, useState } from 'react'
 
+import { CustomSelect } from '@/components/ui/select'
+
 import s from './pagination.module.scss'
 
 type Props = {
   needToShowItems: number
-  onItemsPerPageChange?: (itemsPerPage: number) => void
+  onItemsPerPageChange: (itemsPerPage: number) => void
   totalItems: number
 }
 
@@ -15,7 +17,7 @@ type Props = {
 //   { label: '100', value: 100 },
 // ]
 
-export const Pagination = ({ needToShowItems, totalItems }: Props) => {
+export const Pagination = ({ needToShowItems, onItemsPerPageChange, totalItems }: Props) => {
   const [activePage, setActivePage] = useState(1)
 
   const totalPages = Math.ceil(totalItems / needToShowItems)
@@ -92,19 +94,14 @@ export const Pagination = ({ needToShowItems, totalItems }: Props) => {
         </button>
       </ul>
       <div className={s.selectBox}>
-        <p>
-          Показать на{' '}
-          <span>
-            Тут должен быть селект
-            {/*<selelct*/}
-            {/*  onChange={selectedOption => onItemsPerPageChange(selectedOption.value)}*/}
-            {/*  options={itemsPerPageOptions}*/}
-            {/*  value={itemsPerPageOptions.find(option => option.value === needToShowItems)}*/}
-            {/*/>*/}
-          </span>{' '}
-          странице
-        </p>
+        <span>Показать </span>
+        <CustomSelect
+          onChange={newItemsPerPage => onItemsPerPageChange(newItemsPerPage)}
+          value={needToShowItems}
+        />
+        <span> на странице</span>
       </div>
     </div>
   )
 }
+//
