@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card/card'
 import { Input } from '@/components/ui/input'
 import { Pagination } from '@/components/ui/pagination/pagination'
+import {IconWrapper} from "@/components/ui/icon/iconWrapper";
 
 export function App() {
   const [input, setInput] = useState<string>('')
@@ -19,7 +20,7 @@ export function App() {
         onChange={(e: string) => {
           setInput(e)
         }}
-        type={'text'}
+        type={'password'}
         value={input}
       />
 
@@ -31,6 +32,7 @@ export function App() {
         onItemsPerPageChange={setItemsPerPage}
         totalItems={100}
       />
+<IconWrapper/>
     </div>
   )
 }
