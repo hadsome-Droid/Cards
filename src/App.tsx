@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card/card'
 import { Input } from '@/components/ui/input'
 import { Pagination } from '@/components/ui/pagination/pagination'
-import {IconWrapper} from "@/components/ui/icon/iconWrapper";
+
+import { ArrowUp } from './assets/icons/components/arrowUp/arrowUp'
 
 export function App() {
   const [input, setInput] = useState<string>('')
@@ -32,7 +33,7 @@ export function App() {
         onItemsPerPageChange={setItemsPerPage}
         totalItems={100}
       />
-<IconWrapper/>
+      <ArrowUp color={'red'} />
     </div>
   )
 }
