@@ -3,7 +3,6 @@ import { IconProps, IconWrapper } from '@/assets/icons/iconWrapper'
 export const EyeOff = (allProps: IconProps) => {
   const { svgProps: props, ...restProps } = allProps
 
-  // fill={'currentColor'}
   return (
     <IconWrapper
       icon={
