@@ -19,7 +19,7 @@ export function App() {
         onChange={(e: string) => {
           setInput(e)
         }}
-        type={'text'}
+        type={'password'}
         value={input}
       />
 
