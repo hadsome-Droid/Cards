@@ -12,7 +12,6 @@ export function App() {
   return (
     <div>
       <Button variant={'secondary'}>asdfadsf</Button>
-      <Button as={'a'} children={'wdreras'} href={'wdreras'} variant={'primary'} />
       <Input
         className={'error'}
         name={'wef'}
