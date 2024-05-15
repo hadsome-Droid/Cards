@@ -10,14 +10,12 @@ export function App() {
   const [itemsPerPage, setItemsPerPage] = useState(10)
   const [testButton, setTestButton] = useState(0)
 
-  console.log(testButton)
-
   return (
     <div>
       <Button onClick={() => setTestButton(testButton + 1)} variant={'secondary'}>
         Secondary {testButton}
       </Button>
-      <Button disabled onClick={() => setTestButton(testButton + 1)} variant={'secondary'}>
+      <Button disabled hasImage onClick={() => setTestButton(testButton + 1)} variant={'secondary'}>
         Disabled {testButton}
       </Button>
       <Input
@@ -31,7 +29,9 @@ export function App() {
       />
 
       <Card>
-        <Button onClick={() => setTestButton(testButton + 1)}>Primary {testButton}</Button>
+        <Button hasImage onClick={() => setTestButton(testButton + 1)}>
+          Primary {testButton}
+        </Button>
         <Button disabled onClick={() => setTestButton(testButton + 1)}>
           Disabled {testButton}
         </Button>

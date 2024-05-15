@@ -11,6 +11,7 @@ export type ButtonProps<T extends ElementType = 'button'> = {
   children: ReactNode
   className?: string
   fullWidth?: boolean
+  hasImage?: boolean
   variant?: 'primary' | 'secondary'
 } & ComponentPropsWithoutRef<T>
 
@@ -21,11 +22,10 @@ export const Button = forwardRef(
       children,
       className,
       fullWidth,
+      hasImage,
       variant = 'primary',
       ...rest
     } = props
-
-    console.log(props.disabled)
 
     return (
       <Component
@@ -34,7 +34,7 @@ export const Button = forwardRef(
         ref={ref}
         {...rest}
       >
-        <ArrowLogOut size={16} />
+        {hasImage && <ArrowLogOut size={16} />}
         {children}
       </Component>
     )
