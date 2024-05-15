@@ -25,9 +25,12 @@ export const Button = forwardRef(
       ...rest
     } = props
 
+    console.log(props.disabled)
+
     return (
       <Component
         className={`${s.button} ${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className}`}
+        disabled={props.disabled}
         ref={ref}
         {...rest}
       >

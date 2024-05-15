@@ -8,10 +8,18 @@ import { Pagination } from '@/components/ui/pagination/pagination'
 export function App() {
   const [input, setInput] = useState<string>('')
   const [itemsPerPage, setItemsPerPage] = useState(10)
+  const [testButton, setTestButton] = useState(0)
+
+  console.log(testButton)
 
   return (
     <div>
-      <Button variant={'secondary'}>asdfadsf</Button>
+      <Button onClick={() => setTestButton(testButton + 1)} variant={'secondary'}>
+        Secondary {testButton}
+      </Button>
+      <Button disabled onClick={() => setTestButton(testButton + 1)} variant={'secondary'}>
+        Disabled {testButton}
+      </Button>
       <Input
         className={'error'}
         name={'wef'}
@@ -23,7 +31,10 @@ export function App() {
       />
 
       <Card>
-        <Button>asdfadsf</Button>
+        <Button onClick={() => setTestButton(testButton + 1)}>Primary {testButton}</Button>
+        <Button disabled onClick={() => setTestButton(testButton + 1)}>
+          Disabled {testButton}
+        </Button>
       </Card>
       <Pagination
         needToShowItems={itemsPerPage}
