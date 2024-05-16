@@ -34,6 +34,15 @@ export const Secondary: Story = {
   },
 }
 
+export const HasImage: Story = {
+  args: {
+    children: 'Secondary Button',
+    disabled: false,
+    hasImage: true,
+    variant: 'secondary',
+  },
+}
+
 export const FullWidth: Story = {
   args: {
     children: 'Full Width Primary Button',
@@ -46,7 +55,11 @@ export const FullWidth: Story = {
 export const AsLink: Story = {
   args: {
     as: 'a',
-    children: 'Link that looks like a button',
+    children: 'Go to Google',
+    disabled: false,
+    href: 'https://google.com',
+    rel: 'noopener noreferrer',
+    target: '_blank',
     variant: 'primary',
   },
 }
