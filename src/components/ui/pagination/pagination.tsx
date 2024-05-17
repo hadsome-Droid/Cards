@@ -1,5 +1,7 @@
 import { MouseEvent, useMemo, useState } from 'react'
 
+import { ArrowDown } from '@/assets/icons/components/arrowDown/arrowDown'
+import { ArrowForward } from '@/assets/icons/components/arrowForward/arrowForward'
 import { CustomSelect } from '@/components/ui/select'
 
 import s from './pagination.module.scss'
@@ -9,13 +11,6 @@ type Props = {
   onItemsPerPageChange: (itemsPerPage: number) => void
   totalItems: number
 }
-
-// const itemsPerPageOptions = [
-//   { label: '10', value: 10 },
-//   { label: '20', value: 20 },
-//   { label: '50', value: 50 },
-//   { label: '100', value: 100 },
-// ]
 
 export const Pagination = ({ needToShowItems, onItemsPerPageChange, totalItems }: Props) => {
   const [activePage, setActivePage] = useState(1)
@@ -43,12 +38,16 @@ export const Pagination = ({ needToShowItems, onItemsPerPageChange, totalItems }
     const numbers = [1]
 
     if (totalPages > 5) {
-      if (activePage === 1 || activePage === 2) {
+      if (activePage === 1 || activePage === 2 || activePage === 3) {
         for (let i = 2; i <= 5; i++) {
           numbers.push(i)
         }
         numbers.push(-2, totalPages)
-      } else if (activePage === totalPages - 1 || activePage === totalPages) {
+      } else if (
+        activePage === totalPages - 1 ||
+        activePage === totalPages - 2 ||
+        activePage === totalPages
+      ) {
         numbers.push(-1)
         for (let i = totalPages - 3; i <= totalPages; i++) {
           numbers.push(i)
@@ -72,8 +71,8 @@ export const Pagination = ({ needToShowItems, onItemsPerPageChange, totalItems }
   return (
     <div className={s.box}>
       <ul className={s.pagination}>
-        <button disabled={activePage === 1} onClick={decrementHandler}>
-          {'<'}
+        <button className={s.ArrowBtn} disabled={activePage === 1} onClick={decrementHandler}>
+          <ArrowDown size={16} />
         </button>
         {pageNumbers.map(number =>
           number >= 0 ? (
@@ -89,8 +88,12 @@ export const Pagination = ({ needToShowItems, onItemsPerPageChange, totalItems }
             <li key={number}>...</li>
           )
         )}
-        <button disabled={activePage === totalPages} onClick={incrementHandler}>
-          {'>'}
+        <button
+          className={s.ArrowBtn}
+          disabled={activePage === totalPages}
+          onClick={incrementHandler}
+        >
+          <ArrowForward size={16} />
         </button>
       </ul>
       <div className={s.selectBox}>
