@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card/card'
 import { Input } from '@/components/ui/input'
-import { Pagination } from '@/components/ui/pagination/pagination.stories'
+import { Pagination } from '@/components/ui/pagination/pagination'
 
 export function App() {
   const [input, setInput] = useState<string>('')
