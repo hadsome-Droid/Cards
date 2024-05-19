@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { useState } from 'react'
+
 import { CustomSelect } from './select'
 
 const meta = {
@@ -15,9 +17,15 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const DefaultState: Story = {
+export const DefaultSelect: Story = {
   args: {
     onChange: () => {},
     value: 10,
+  },
+
+  render: args => {
+    const [defaultValue, setDefaultValue] = useState(args.value)
+
+    return <CustomSelect onChange={setDefaultValue} value={defaultValue} />
   },
 }
