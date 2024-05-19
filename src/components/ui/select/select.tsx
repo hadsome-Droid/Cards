@@ -1,3 +1,7 @@
+import { useState } from 'react'
+
+import { ArrowDown } from '@/assets/icons/components/arrowDown/arrowDown'
+import { ArrowUp } from '@/assets/icons/components/arrowUp/arrowUp'
 import * as Select from '@radix-ui/react-select'
 
 import s from './select.module.scss'
@@ -16,12 +20,19 @@ const itemsPerPageOptions = [
 
 export const CustomSelect = ({ onChange, value }: PropsType) => {
   const selectedValue = String(value)
+  const [open, setOpen] = useState(false)
 
   return (
-    <Select.Root onValueChange={newValue => onChange(Number(newValue))} value={selectedValue}>
+    <Select.Root
+      onOpenChange={() => setOpen(!open)}
+      onValueChange={newValue => onChange(Number(newValue))}
+      value={selectedValue}
+    >
       <Select.Trigger aria-label={'Select the number of items'} className={s.SelectTrigger}>
         <Select.Value placeholder={selectedValue}>{selectedValue}</Select.Value>
-        <Select.Icon className={s.SelectIcon} />
+        <Select.Icon asChild className={s.SelectIcon}>
+          {open ? <ArrowUp /> : <ArrowDown />}
+        </Select.Icon>
       </Select.Trigger>
       <Select.Portal>
         <Select.Content className={s.SelectContent} position={'popper'}>
