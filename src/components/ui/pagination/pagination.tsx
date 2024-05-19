@@ -1,6 +1,6 @@
 import { MouseEvent, useMemo, useState } from 'react'
 
-import { ArrowDown } from '@/assets/icons/components/arrowDown/arrowDown'
+import { ArrowBack } from '@/assets/icons/components/arrowBack/arrowBack'
 import { ArrowForward } from '@/assets/icons/components/arrowForward/arrowForward'
 import { CustomSelect } from '@/components/ui/select'
 
@@ -72,7 +72,7 @@ export const Pagination = ({ needToShowItems, onItemsPerPageChange, totalItems }
     <div className={s.box}>
       <ul className={s.pagination}>
         <button className={s.ArrowBtn} disabled={activePage === 1} onClick={decrementHandler}>
-          <ArrowDown size={16} />
+          <ArrowBack size={16} />
         </button>
         {pageNumbers.map(number =>
           number >= 0 ? (
@@ -107,4 +107,3 @@ export const Pagination = ({ needToShowItems, onItemsPerPageChange, totalItems }
     </div>
   )
 }
-//

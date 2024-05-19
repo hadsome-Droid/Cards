@@ -16,7 +16,6 @@
 .pageItem {
   width: 24px;
   height: 24px;
-  text-align: center;
 }
 
 .activePage {
@@ -29,7 +28,9 @@
 }
 
 .pageLink {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   box-sizing: border-box;
   width: 100%;
@@ -58,6 +59,7 @@
   align-items: center;
   justify-content: center;
 
+  box-sizing: border-box;
   width: 24px;
   height: 24px;
 
