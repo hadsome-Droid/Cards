@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { LoginForm } from '@/components/auth/loginForm/loginForm'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card/card'
 import { Input } from '@/components/ui/input'
@@ -41,6 +42,9 @@ export function App() {
         onItemsPerPageChange={setItemsPerPage}
         totalItems={100}
       />
+      <Card>
+        <LoginForm />
+      </Card>
     </div>
   )
 }
