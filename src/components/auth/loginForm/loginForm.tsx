@@ -1,32 +1,66 @@
-import { useForm } from 'react-hook-form'
+import { useEffect } from 'react'
+import { useController, useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+
+import s from './loginForm.module.scss'
+
+const loginSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(3),
+})
 
 type FormValues = {
   email: string
-  login: string
+  password: string
   rememberMe: boolean
 }
 
 export const LoginForm = () => {
-  const { handleSubmit, register } = useForm<FormValues>()
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+    register,
+    setError,
+  } = useForm<FormValues>({
+    resolver: zodResolver(loginSchema),
+  })
+
+  useEffect(() => {
+    setError('email', {
+      message: 'Dont Forget Your Username Should Be Cool!',
+      type: 'manual',
+    })
+  }, [setError])
+  const {
+    field: { onChange, value, ...field },
+  } = useController({
+    control,
+    name: 'rememberMe',
+  })
 
   const onSubmit = (data: FormValues) => {
-    console.log(data)
+    console.log(data, 'data')
   }
+
+  console.log(errors.email)
+  console.log(errors)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor={'email'}>Email:</label>
+      <input type={'email'} {...register('email')} className={s.textField} />
+
+      <span style={{ color: 'red' }}>{errors.email?.message}</span>
+      <label htmlFor={'password'}>Password:</label>
+      <input type={'password'} {...register('password')} className={s.textField} />
+      <span style={{ color: 'red' }}>{errors.password?.message}</span>
+
       <label>
-        Email
-        <input type={'email'} {...register('email')} />
-      </label>
-      <label>
-        Password
-        <input type={'password'} {...register('login')} />
-      </label>
-      <label>
-        <input type={'checkbox'} {...register('rememberMe')} />
+        <input type={'checkbox'} {...field} checked={value} onChange={onChange} />
         remember me
       </label>
       <Button type={'submit'}>Submit</Button>
