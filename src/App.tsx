@@ -42,9 +42,8 @@ export function App() {
         onItemsPerPageChange={setItemsPerPage}
         totalItems={100}
       />
-      <Card>
-        <LoginForm />
-      </Card>
+
+      <LoginForm />
     </div>
   )
 }
