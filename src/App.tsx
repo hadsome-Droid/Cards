@@ -10,6 +10,9 @@ export function App() {
   const [input, setInput] = useState<string>('')
   const [itemsPerPage, setItemsPerPage] = useState(10)
   const [testButton, setTestButton] = useState(0)
+  const [dataTest, setDataTest] = useState()
+
+  console.log(dataTest)
 
   return (
     <div>
@@ -43,7 +46,11 @@ export function App() {
         totalItems={100}
       />
 
-      <LoginForm />
+      <LoginForm
+        onSubmit={values => {
+          setDataTest(values)
+        }}
+      />
     </div>
   )
 }

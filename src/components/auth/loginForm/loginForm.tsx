@@ -1,11 +1,13 @@
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
-import { FormCheckbox } from '@/components/ui/form/form-checkbox'
+import { FormCheckbox } from '@/components/ui/form/formCheckbox'
+import { FormTextField } from '@/components/ui/form/formTextField'
+import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import s from './loginForm.module.scss'
+// import s from './loginForm.module.scss'
 
 const loginSchema = z.object({
   email: z.string().trim().email(),
@@ -15,35 +17,37 @@ const loginSchema = z.object({
 
 type FormValues = z.infer<typeof loginSchema>
 
-export const LoginForm = () => {
-  const {
-    control,
-    formState: { errors },
-    handleSubmit,
-    register,
-  } = useForm<FormValues>({
-    mode: 'onChange',
+type Props = {
+  onSubmit: (values: FormValues) => void
+}
+
+export const LoginForm = ({ onSubmit }: Props) => {
+  const { control, handleSubmit } = useForm<FormValues>({
+    defaultValues: {
+      email: '',
+      password: '',
+      rememberMe: false,
+    },
     resolver: zodResolver(loginSchema),
   })
 
-  const onSubmit: SubmitHandler<FormValues> = data => {
-    console.log(data, 'data')
-  }
-
-  console.log(errors)
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor={'email'}>Email:</label>
-      <input type={'email'} {...register('email')} className={s.textField} />
-      {errors.email && <span style={{ color: 'red' }}>{errors.email.message}</span>}
+    <>
+      <DevTool control={control} />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/*<label htmlFor={'email'}>Email:</label>*/}
+        {/*<input type={'email'} {...register('email')} className={s.textField} />*/}
+        {/*{errors.email && <span style={{ color: 'red' }}>{errors.email.message}</span>}*/}
+        <FormTextField control={control} name={'email'} />
+        <FormTextField control={control} name={'password'} />
 
-      <label htmlFor={'password'}>Password:</label>
-      <input type={'password'} {...register('password')} className={s.textField} />
-      {errors.password && <span style={{ color: 'red' }}>{errors.password.message}</span>}
+        {/*<label htmlFor={'password'}>Password:</label>*/}
+        {/*<input type={'password'} {...register('password')} className={s.textField} />*/}
+        {/*{errors.password && <span style={{ color: 'red' }}>{errors.password.message}</span>}*/}
 
-      <FormCheckbox control={control} name={'rememberMe'} />
-      <Button type={'submit'}>Submit</Button>
-    </form>
+        <FormCheckbox control={control} name={'rememberMe'} />
+        <Button type={'submit'}>Submit</Button>
+      </form>
+    </>
   )
 }
