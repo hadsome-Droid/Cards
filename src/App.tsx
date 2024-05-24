@@ -18,6 +18,8 @@ export function App() {
       <Button disabled hasImage onClick={() => setTestButton(testButton + 1)} variant={'secondary'}>
         Disabled {testButton}
       </Button>
+      <br />
+
       <Input
         className={'error'}
         name={'wef'}
@@ -27,6 +29,17 @@ export function App() {
         type={'password'}
         value={input}
       />
+      <br />
+      <Input
+        className={'default'}
+        name={'wef'}
+        onChange={(e: string) => {
+          setInput(e)
+        }}
+        type={'text'}
+        value={input}
+      />
+      <br />
 
       <Card>
         <Button hasImage onClick={() => setTestButton(testButton + 1)}>
