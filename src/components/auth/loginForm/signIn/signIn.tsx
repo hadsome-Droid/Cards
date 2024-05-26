@@ -3,11 +3,12 @@ import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { FormCheckbox } from '@/components/ui/form/formCheckbox'
 import { FormTextField } from '@/components/ui/form/formTextField'
+import { Typography } from '@/components/ui/typografy/typografy'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import s from './loginForm.module.scss'
+import s from '../loginForm.module.scss'
 
 const loginSchema = z.object({
   email: z.string().trim().email(),
@@ -18,10 +19,12 @@ const loginSchema = z.object({
 export type FormValues = z.infer<typeof loginSchema>
 
 type Props = {
+  buttonName: string
+  onSignUp: () => void
   onSubmit: (values: FormValues) => void
 }
 
-export const LoginForm = ({ onSubmit }: Props) => {
+export const SignIn = ({ buttonName, onSignUp, onSubmit }: Props) => {
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       email: '',
@@ -35,35 +38,35 @@ export const LoginForm = ({ onSubmit }: Props) => {
     <>
       {import.meta.env.DEV && <DevTool control={control} />}
       <form className={s.loginForm} onSubmit={handleSubmit(onSubmit)}>
+        <Typography.H2>Sign In</Typography.H2>
         <fieldset className={s.loginFieldSet}>
-          {/*<legend>Login</legend>*/}
-          <FormTextField control={control} name={'email'} />
-          <FormTextField control={control} name={'password'} />
-          <FormCheckbox control={control} name={'rememberMe'} />
-          <a href={'#'}>Forgot Password?</a>
+          <FormTextField
+            className={s.textField}
+            control={control}
+            label={'Email'}
+            name={'email'}
+            type={'email'}
+          />
+          <FormTextField
+            className={s.textField}
+            control={control}
+            label={'Password'}
+            name={'password'}
+            type={'password'}
+          />
         </fieldset>
-        <Button type={'submit'}>Submit</Button>
+        <FormCheckbox control={control} label={'Remember Me'} name={'rememberMe'} />
+        <a className={s.forgotPassword} href={'#'}>
+          Forgot Password?
+        </a>
+        <Button fullWidth type={'submit'}>
+          {buttonName}
+        </Button>
         <span>Don't have an account?</span>
-        <a href={'#'}>Sign In</a>
+        <Button className={s.loginBtn} onClick={onSignUp} type={'button'}>
+          Sign Up
+        </Button>
       </form>
     </>
   )
-}
-{
-  /*<label htmlFor={'email'}>Email:</label>*/
-}
-{
-  /*<input type={'email'} {...register('email')} className={s.textField} />*/
-}
-{
-  /*{errors.email && <span style={{ color: 'red' }}>{errors.email.message}</span>}*/
-}
-{
-  /*<label htmlFor={'password'}>Password:</label>*/
-}
-{
-  /*<input type={'password'} {...register('password')} className={s.textField} />*/
-}
-{
-  /*{errors.password && <span style={{ color: 'red' }}>{errors.password.message}</span>}*/
 }

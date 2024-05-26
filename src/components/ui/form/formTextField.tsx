@@ -1,8 +1,19 @@
 import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
 
-type Props<T extends FieldValues> = UseControllerProps<T>
+type Props<T extends FieldValues> = {
+  className?: string
+  label: string
+  type?: string
+} & UseControllerProps<T>
 
-export const FormTextField = <T extends FieldValues>({ control, name, ...rest }: Props<T>) => {
+export const FormTextField = <T extends FieldValues>({
+  className,
+  control,
+  label,
+  name,
+  type = 'text',
+  ...rest
+}: Props<T>) => {
   const {
     field,
     fieldState: { error },
@@ -13,8 +24,8 @@ export const FormTextField = <T extends FieldValues>({ control, name, ...rest }:
 
   return (
     <label>
-      {name}:
-      <input type={name} {...rest} {...field} />
+      {label}:
+      <input type={type} {...rest} {...field} className={className} />
       {error && <span style={{ color: 'red' }}>{error.message}</span>}
     </label>
   )
