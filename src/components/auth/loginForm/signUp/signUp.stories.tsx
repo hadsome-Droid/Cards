@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { SignIn } from './signIn'
+import { SignUp } from '@/components/auth/loginForm/signUp/signUp'
 
 const meta = {
   argTypes: {
@@ -9,18 +9,18 @@ const meta = {
     },
     onSubmit: () => {},
   },
-  component: SignIn,
+  component: SignUp,
   tags: ['autodocs'],
-  title: 'Auth/SignIn',
-} satisfies Meta<typeof SignIn>
+  title: 'Auth/SignUp',
+} satisfies Meta<typeof SignUp>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
-    buttonName: 'Sign In',
-    onSignUp: () => {},
+    buttonName: 'Sign Up',
+    onSignIn: () => {},
     onSubmit: () => {},
   },
 }
