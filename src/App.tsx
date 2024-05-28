@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Auth } from '@/components/auth/auth'
+import { CheckBox } from '@/components/ui/checkBox/checkBox'
 import { Input } from '@/components/ui/input'
 
 export function App() {
@@ -19,6 +20,7 @@ export function App() {
         type={'password'}
         value={input}
       />
+      <CheckBox />
     </div>
   )
 }

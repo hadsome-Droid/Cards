@@ -1,0 +1,50 @@
+button{
+  all: unset;
+}
+
+.Box{
+  display: flex;
+  align-items: center;
+  
+}
+
+
+.CheckboxRoot {
+  position: relative;
+
+  display: flex;
+  align-items: start;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  background-color: white;
+  border-radius: 4px;
+}
+
+.CheckboxRoot::before{
+  content: '';
+
+  position: absolute;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
+}
+
+.CheckboxRoot:hover::before{
+  background-color: var(--color-dark-500);
+}
+
+.CheckboxIndicator {
+  color: var(--color-accent-900);
+}
+
+.Label {
+  padding-left: 15px;
+  font-size: 15px;
+  line-height: 1;
+  color: white;
+}
