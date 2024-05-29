@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Auth } from '@/components/auth/auth'
+import { Card } from '@/components/ui/card/card'
 import { CheckBox } from '@/components/ui/checkBox/checkBox'
 import { Input } from '@/components/ui/input'
 
@@ -20,7 +21,9 @@ export function App() {
         type={'password'}
         value={input}
       />
-      <CheckBox />
+      <Card>
+        <CheckBox />
+      </Card>
     </div>
   )
 }
