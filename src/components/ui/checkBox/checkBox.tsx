@@ -18,7 +18,7 @@ export const CheckBox = () => {
         onCheckedChange={() => setChecked(!checked)}
       >
         <Checkbox.Indicator className={s.CheckboxIndicator}>
-          {checked ? <Check2 /> : <Check3 />}
+          <Check2 size={22} />
         </Checkbox.Indicator>
       </Checkbox.Root>
       <label className={s.Label} htmlFor={'c1'}>
