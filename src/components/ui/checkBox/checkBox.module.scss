@@ -1,13 +1,11 @@
-button{
+button {
   all: unset;
 }
 
-.Box{
+.Box {
   display: flex;
   align-items: center;
-
 }
-
 
 .CheckboxRoot {
   position: relative;
@@ -21,50 +19,73 @@ button{
   width: 18px;
   height: 18px;
 
-  border: 2px solid white;
-  border-radius: 4px;
+  // Псевдоэлементы и состояния вложены в .CheckboxRoot
+  &::before {
+    content: '';
+
+    position: absolute;
+    z-index: -1;
+    top: -9px;
+    transform: scale(0); // Скрываем элемент по умолчанию
+
+    width: 36px;
+    height: 36px;
+
+    background-color: var(--color-dark-500);
+    border-radius: 50%;
+
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    z-index: -1;
+
+    width: 100%;
+    height: 100%;
+
+
+    border: 2px solid var(--color-light-900);
+    border-radius: 3px;
+  }
+
+  &:hover::before,
+  &:focus::before,
+  &:active::before {
+    transform: scale(1);
+    background-color: var(--color-dark-100);
+  }
+
+  &[data-state="checked"] {
+    &::after {
+      background-color: var(--color-dark-900);
+      border-color: var(--color-light-100);
+    }
+  }
+
+  &:disabled::after {
+    border: 2px solid var(--color-dark-100);
+  }
+
+  &[data-state="checked"]:disabled::after {
+    background-color: var(--color-light-100);
+    border-color: var(--color-dark-100);
+  }
 }
-
-.CheckboxRoot::before {
-  content: '';
-
-  position: absolute;
-  z-index: -1;
-  top: 50%;
-  left: 50%;
-  transform: scale(0); /* Сделаем его невидимым по умолчанию */
-
-  width: 36px;
-  height: 36px;
-
-  background-color: var(--color-dark-500);
-  border-radius: 50%;
-
-  transition: transform 0.2s ease-in-out; /* Анимация появления */
-}
-
-.CheckboxRoot:hover::before {
-  transform: scale(1); /* При наведении показываем круг */
-}
-
-//.CheckboxRoot:hover::after{
-//  content: '';
-//
-//  width: 100%;
-//  height: 100%;
-//
-//  border: 2px solid white;
-//  border-radius: 4px;
-//}
 
 .CheckboxIndicator {
   position: relative;
   color: var(--color-light-100);
+
+  &[data-disabled] {
+    color: var(--color-dark-100);
+  }
 }
 
-
 .Label {
-  padding-left: 15px;
+  padding-left: 11px;
   font-size: 15px;
   line-height: 1;
   color: white;
