@@ -75,6 +75,12 @@ button {
   }
 }
 
+.CheckboxRoot:disabled {
+  &::before {
+    transform: scale(0);
+  }
+}
+
 .CheckboxIndicator {
   position: relative;
   color: var(--color-light-100);
@@ -88,5 +94,12 @@ button {
   padding-left: 11px;
   font-size: 15px;
   line-height: 1;
-  color: white;
+  color: var(--color-light-100);
+}
+
+.DisabledLabel {
+  padding-left: 11px;
+  font-size: 15px;
+  line-height: 1;
+  color: var(--color-dark-100);
 }

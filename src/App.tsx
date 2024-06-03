@@ -22,7 +22,7 @@ export function App() {
         value={input}
       />
       <Card>
-        <CheckBox />
+        <CheckBox disabled label={'Accept terms and conditions.'} />
       </Card>
     </div>
   )
