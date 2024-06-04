@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card/card'
+import { Header } from '@/components/ui/header'
 import { Input } from '@/components/ui/input'
 import { Pagination } from '@/components/ui/pagination/pagination'
 
@@ -12,6 +13,7 @@ export function App() {
 
   return (
     <div>
+      <Header />
       <Button onClick={() => setTestButton(testButton + 1)} variant={'secondary'}>
         Secondary {testButton}
       </Button>
