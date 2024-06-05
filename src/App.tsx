@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
 import { Auth } from '@/components/auth/auth'
+import { Card } from '@/components/ui/card/card'
+import { CheckBox } from '@/components/ui/checkBox/checkBox'
 import { Input } from '@/components/ui/input'
 
 export function App() {
@@ -19,6 +21,9 @@ export function App() {
         type={'password'}
         value={input}
       />
+      <Card>
+        <CheckBox disabled label={'Accept terms and conditions.'} />
+      </Card>
     </div>
   )
 }
