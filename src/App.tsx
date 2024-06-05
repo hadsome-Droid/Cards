@@ -1,18 +1,20 @@
 import { useState } from 'react'
 
-import { Button } from '@/components/ui/button'
+import { Auth } from '@/components/auth/auth'
 import { Card } from '@/components/ui/card/card'
+
 import { Header } from '@/components/ui/header'
+
+import { CheckBox } from '@/components/ui/checkBox/checkBox'
+
 import { Input } from '@/components/ui/input'
-import { Pagination } from '@/components/ui/pagination/pagination'
 
 export function App() {
   const [input, setInput] = useState<string>('')
-  const [itemsPerPage, setItemsPerPage] = useState(10)
-  const [testButton, setTestButton] = useState(0)
 
   return (
     <div>
+
       <Header />
       <Button onClick={() => setTestButton(testButton + 1)} variant={'secondary'}>
         Secondary {testButton}
@@ -21,6 +23,9 @@ export function App() {
         Disabled {testButton}
       </Button>
       <br />
+
+      <Auth />
+
 
       <Input
         className={'error'}
@@ -31,6 +36,7 @@ export function App() {
         type={'password'}
         value={input}
       />
+
       <br />
       <Input
         className={'default'}
@@ -43,19 +49,10 @@ export function App() {
       />
       <br />
 
+
       <Card>
-        <Button hasImage onClick={() => setTestButton(testButton + 1)}>
-          Primary {testButton}
-        </Button>
-        <Button disabled onClick={() => setTestButton(testButton + 1)}>
-          Disabled {testButton}
-        </Button>
+        <CheckBox disabled label={'Accept terms and conditions.'} />
       </Card>
-      <Pagination
-        needToShowItems={itemsPerPage}
-        onItemsPerPageChange={setItemsPerPage}
-        totalItems={100}
-      />
     </div>
   )
 }
