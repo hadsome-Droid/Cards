@@ -1,7 +1,12 @@
+import { Edit } from '@/assets/icons/components/edit/edit'
+import { PlayCircle } from '@/assets/icons/components/playCircle/playCircle'
+import { Trash } from '@/assets/icons/components/trash/trash'
+import { Table } from '@/components/ui/table/table'
+
 import s from './tables.module.scss'
 
 export const Tables = () => {
-  const HeaderList = ['Name', 'Cards', 'Last Updated', 'Create By']
+  const HeaderList = ['Name', 'Cards', 'Last Updated', 'Create By', '']
   const BodyList = [
     { createBy: 'Ivan Ivanov', lastUpdated: '18.01.2023', packName: 'Pack Name', totalCard: '4' },
     { createBy: 'Peter Petrov', lastUpdated: '13.02.2010', packName: 'Pack Name', totalCard: '6' },
@@ -16,32 +21,29 @@ export const Tables = () => {
   ]
 
   return (
-    <div className={s.Tbox}>
-      <div className={`${s.Thead} ${s.Head}`}>
-        {HeaderList.map(
-          el => (
-            <div className={s.Item} key={el}>
+    <Table.Root className={s.Root}>
+      <Table.Head>
+        <Table.Row>
+          {HeaderList.map(el => (
+            <Table.HeadCell className={s.HeadCell} key={el}>
               {el}
-            </div>
-          )
-          // <div className={s.test} key={el.id}>
-          //   <div className={s.TheadItem}>{el.name}</div>
-          //   <div className={s.TheadItem}>{el.cards}</div>
-          //   <div className={s.TheadItem}>{el.lastUpdated}</div>
-          //   <div className={s.TheadBigItem}>{el.createBy}</div>
-          // </div>
-        )}
-      </div>
-      <div>
+            </Table.HeadCell>
+          ))}
+        </Table.Row>
+      </Table.Head>
+      <Table.Body>
         {BodyList.map((el, index) => (
-          <div className={s.Thead} key={index}>
-            <div className={s.Item}>{el.packName}</div>
-            <div className={s.Item}>{el.totalCard}</div>
-            <div className={s.Item}>{el.lastUpdated}</div>
-            <div className={s.Item}>{el.createBy}</div>
-          </div>
+          <Table.Row className={s.Row} key={index}>
+            <Table.Cell className={s.Cell}>{el.packName}</Table.Cell>
+            <Table.Cell className={s.Cell}>{el.totalCard}</Table.Cell>
+            <Table.Cell className={s.Cell}>{el.lastUpdated}</Table.Cell>
+            <Table.Cell className={s.Cell}>{el.createBy}</Table.Cell>
+            <Table.Cell className={`${s.Last}`}>
+              <PlayCircle /> <Edit /> <Trash />
+            </Table.Cell>
+          </Table.Row>
         ))}
-      </div>
-    </div>
+      </Table.Body>
+    </Table.Root>
   )
 }
