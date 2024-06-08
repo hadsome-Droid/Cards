@@ -1,6 +1,7 @@
 import { Edit } from '@/assets/icons/components/edit/edit'
 import { PlayCircle } from '@/assets/icons/components/playCircle/playCircle'
 import { Trash } from '@/assets/icons/components/trash/trash'
+import { Button } from '@/components/ui/button'
 import { Table } from '@/components/ui/table/table'
 
 import s from './tables.module.scss'
@@ -39,7 +40,15 @@ export const Tables = () => {
             <Table.Cell className={s.Cell}>{el.lastUpdated}</Table.Cell>
             <Table.Cell className={s.Cell}>{el.createBy}</Table.Cell>
             <Table.Cell className={`${s.Last}`}>
-              <PlayCircle /> <Edit /> <Trash />
+              <Button as={'a'} className={s.Play}>
+                <PlayCircle size={25} />
+              </Button>
+              <Button className={s.Edit}>
+                <Edit size={25} />
+              </Button>
+              <Button className={s.Trash}>
+                <Trash size={25} />
+              </Button>
             </Table.Cell>
           </Table.Row>
         ))}
