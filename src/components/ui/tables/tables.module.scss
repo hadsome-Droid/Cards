@@ -58,10 +58,6 @@
     filter: drop-shadow(0 0 2px $active-color);
   }
 
-  &:focus{
-    filter: drop-shadow(0 0 2px $active-color);
-    outline: 2px solid transparent;
-  }
 }
 
 .Play{
@@ -69,13 +65,15 @@
 
   @include hover-and-active-styles(var(--color-success-700), var(--color-success-500));
 
-
+  &:focus{
+    outline: 2px solid var(--color-success-700);
+  }
 }
 
 .Edit{
   @include common-control-styles;
 
-  @include hover-and-active-styles(var(--color-info-700), var(--color-info-500));
+  @include hover-and-active-styles(var(--color-info-700), var(--color-info-100));
 }
 
 .Trash{

@@ -40,7 +40,7 @@ export const Tables = () => {
             <Table.Cell className={s.Cell}>{el.lastUpdated}</Table.Cell>
             <Table.Cell className={s.Cell}>{el.createBy}</Table.Cell>
             <Table.Cell className={`${s.Last}`}>
-              <Button as={'a'} className={s.Play}>
+              <Button className={s.Play}>
                 <PlayCircle size={25} />
               </Button>
               <Button className={s.Edit}>
