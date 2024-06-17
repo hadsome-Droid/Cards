@@ -3,8 +3,8 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { CSSProperties } from 'react'
 
 import { Button } from '@/components/ui/button'
-import { Typography } from '@/components/ui/typografy/typografy'
 
+import { Typography } from '../typography/typography'
 import { Table } from './table'
 
 const meta = {
