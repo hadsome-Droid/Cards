@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
 import { FormTextField } from '@/components/ui/form/formTextField'
-import { Typography } from '@/components/ui/typografy/typografy'
+import { Typography } from '@/components/ui/typography/typography'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
