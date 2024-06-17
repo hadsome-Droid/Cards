@@ -4,9 +4,9 @@ import { Trash } from '@/assets/icons/components/trash/trash'
 import { Button } from '@/components/ui/button'
 import { Table } from '@/components/ui/table/table'
 
-import s from './tables.module.scss'
+import s from './desks.module.scss'
 
-export const Tables = () => {
+export const Decks = () => {
   const HeaderList = ['Name', 'Cards', 'Last Updated', 'Create By', '']
   const BodyList = [
     { createBy: 'Ivan Ivanov', lastUpdated: '18.01.2023', packName: 'Pack Name', totalCard: '4' },
