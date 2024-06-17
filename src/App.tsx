@@ -1,12 +1,11 @@
 import { Header } from '@/components/ui/header'
-import { Tables } from '@/components/ui/tables/tables'
+import { Router } from '@/routers/router'
 
 export function App() {
   return (
     <div>
-      пипец
       <Header />
-      <Tables />
+      <Router />
     </div>
   )
 }
