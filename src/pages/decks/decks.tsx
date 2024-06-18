@@ -3,23 +3,16 @@ import { PlayCircle } from '@/assets/icons/components/playCircle/playCircle'
 import { Trash } from '@/assets/icons/components/trash/trash'
 import { Button } from '@/components/ui/button'
 import { Table } from '@/components/ui/table/table'
+import { Deck } from '@/services/decks/deck.types'
 
 import s from './desks.module.scss'
 
-export const Decks = () => {
+type Props = {
+  decks: Deck[] | undefined
+}
+
+export const Decks = ({ decks }: Props) => {
   const HeaderList = ['Name', 'Cards', 'Last Updated', 'Create By', '']
-  const BodyList = [
-    { createBy: 'Ivan Ivanov', lastUpdated: '18.01.2023', packName: 'Pack Name', totalCard: '4' },
-    { createBy: 'Peter Petrov', lastUpdated: '13.02.2010', packName: 'Pack Name', totalCard: '6' },
-    { createBy: 'Oleg Olegov', lastUpdated: '16.03.2022', packName: 'Pack Name', totalCard: '3' },
-    { createBy: 'Vlad Vladov', lastUpdated: '11.06.2021', packName: 'Pack Name', totalCard: '7' },
-    {
-      createBy: 'Donald Donaldov',
-      lastUpdated: '12.08.2020',
-      packName: 'Pack Name',
-      totalCard: '2',
-    },
-  ]
 
   return (
     <Table.Root className={s.Root}>
@@ -33,25 +26,29 @@ export const Decks = () => {
         </Table.Row>
       </Table.Head>
       <Table.Body>
-        {BodyList.map((el, index) => (
-          <Table.Row className={s.Row} key={index}>
-            <Table.Cell className={s.Cell}>{el.packName}</Table.Cell>
-            <Table.Cell className={s.Cell}>{el.totalCard}</Table.Cell>
-            <Table.Cell className={s.Cell}>{el.lastUpdated}</Table.Cell>
-            <Table.Cell className={s.Cell}>{el.createBy}</Table.Cell>
-            <Table.Cell className={`${s.Last}`}>
-              <Button className={s.Play}>
-                <PlayCircle size={25} />
-              </Button>
-              <Button className={s.Edit}>
-                <Edit size={25} />
-              </Button>
-              <Button className={s.Trash}>
-                <Trash size={25} />
-              </Button>
-            </Table.Cell>
-          </Table.Row>
-        ))}
+        {decks?.map(el => {
+          const updatedAt = new Date(el.updated).toLocaleDateString('ru-RU')
+
+          return (
+            <Table.Row className={s.Row} key={el.id}>
+              <Table.Cell className={s.Cell}>{el.name}</Table.Cell>
+              <Table.Cell className={s.Cell}>{el.cardsCount}</Table.Cell>
+              <Table.Cell className={s.Cell}>{updatedAt}</Table.Cell>
+              <Table.Cell className={s.Cell}>{el.author.name}</Table.Cell>
+              <Table.Cell className={`${s.Last}`}>
+                <Button className={s.Play}>
+                  <PlayCircle size={25} />
+                </Button>
+                <Button className={s.Edit}>
+                  <Edit size={25} />
+                </Button>
+                <Button className={s.Trash}>
+                  <Trash size={25} />
+                </Button>
+              </Table.Cell>
+            </Table.Row>
+          )
+        })}
       </Table.Body>
     </Table.Root>
   )
