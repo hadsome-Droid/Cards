@@ -4,6 +4,11 @@ import { Trash } from '@/assets/icons/components/trash/trash'
 import { Button } from '@/components/ui/button'
 import { Table } from '@/components/ui/table/table'
 import { Deck } from '@/services/decks/deck.types'
+import {
+  useCreateDeckMutation,
+  useRemoveDeckMutation,
+  useUpdateDeckMutation,
+} from '@/services/flashcards-api'
 
 import s from './desks.module.scss'
 
@@ -13,6 +18,25 @@ type Props = {
 
 export const Decks = ({ decks }: Props) => {
   const HeaderList = ['Name', 'Cards', 'Last Updated', 'Create By', '']
+  const [createDeck] = useCreateDeckMutation()
+  const [removeDeck] = useRemoveDeckMutation()
+  const [updateDeck] = useUpdateDeckMutation()
+
+  const handlerClick = () => {
+    const title = 'New Deck'
+
+    createDeck(title)
+  }
+
+  const removeHandler = (id: string) => {
+    removeDeck(id)
+  }
+
+  const updateHandler = (id: string) => {
+    const updateTitle = 'Update Name'
+
+    updateDeck({ id, name: updateTitle })
+  }
 
   return (
     <Table.Root className={s.Root}>
@@ -36,13 +60,18 @@ export const Decks = ({ decks }: Props) => {
               <Table.Cell className={s.Cell}>{updatedAt}</Table.Cell>
               <Table.Cell className={s.Cell}>{el.author.name}</Table.Cell>
               <Table.Cell className={`${s.Last}`}>
-                <Button className={s.Play}>
+                <Button className={s.Play} onClick={handlerClick}>
                   <PlayCircle size={25} />
                 </Button>
-                <Button className={s.Edit}>
+                <Button
+                  className={s.Edit}
+                  onClick={() => {
+                    updateHandler(el.id)
+                  }}
+                >
                   <Edit size={25} />
                 </Button>
-                <Button className={s.Trash}>
+                <Button className={s.Trash} onClick={() => removeHandler(el.id)}>
                   <Trash size={25} />
                 </Button>
               </Table.Cell>

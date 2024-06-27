@@ -16,7 +16,6 @@ const DecksPage = () => {
   if (error) {
     return <h1>Error: {JSON.stringify(error)}</h1>
   }
-  console.log(data)
 
   return (
     <div>
