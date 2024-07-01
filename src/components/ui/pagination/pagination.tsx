@@ -7,15 +7,26 @@ import { CustomSelect } from '@/components/ui/select'
 import s from './pagination.module.scss'
 
 type Props = {
-  needToShowItems: number
+  activePage?: number
+  needToShowItems?: number
   onItemsPerPageChange: (itemsPerPage: number) => void
-  totalItems: number
+  setActivePage: (activePage: number) => void
+  totalItems?: number
+  totalPages?: number
 }
 
-export const Pagination = ({ needToShowItems, onItemsPerPageChange, totalItems }: Props) => {
-  const [activePage, setActivePage] = useState(1)
+export const Pagination = ({
+  activePage,
+  needToShowItems,
+  onItemsPerPageChange,
+  setActivePage,
+  totalItems,
+  totalPages,
+}: Props) => {
+  // const [activePage, setActivePage] = useState(1)
 
-  const totalPages = Math.ceil(totalItems / needToShowItems)
+  // const totalPages = Math.ceil(totalItems / needToShowItems)
+  const test = totalItems
 
   const handleClick = (number: number) => (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -23,13 +34,13 @@ export const Pagination = ({ needToShowItems, onItemsPerPageChange, totalItems }
   }
 
   const decrementHandler = () => {
-    if (activePage > 1) {
+    if (activePage && activePage > 1) {
       setActivePage(activePage - 1)
     }
   }
 
   const incrementHandler = () => {
-    if (activePage < totalPages) {
+    if (activePage && activePage < totalPages) {
       setActivePage(activePage + 1)
     }
   }
@@ -37,7 +48,7 @@ export const Pagination = ({ needToShowItems, onItemsPerPageChange, totalItems }
   const pageNumbers = useMemo(() => {
     const numbers = [1]
 
-    if (totalPages > 5) {
+    if (totalPages && totalPages > 5) {
       if (activePage === 1 || activePage === 2 || activePage === 3) {
         for (let i = 2; i <= 5; i++) {
           numbers.push(i)
