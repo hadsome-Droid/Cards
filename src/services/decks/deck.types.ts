@@ -3,6 +3,12 @@ export interface DecksListResponse {
   pagination: Pagination
 }
 
+export type NewDeckResponse = {
+  _count: Count
+} & Omit<Deck, 'isFavorite'>
+
+export type UpdatedDeckResponse = Omit<Deck, 'author' | 'isFavorite'>
+
 export interface Pagination {
   currentPage: number
   itemsPerPage: number
@@ -37,3 +43,16 @@ export interface GetDecksArgs {
   name?: string
   orderBy?: string
 }
+
+export interface Count {
+  card: number
+}
+
+export type PostDeckArgs = {
+  isPrivate?: boolean
+  name: string
+} & Pick<Deck, 'cover'>
+
+export type PatchDeckArgs = {
+  id: string
+} & Partial<PostDeckArgs>

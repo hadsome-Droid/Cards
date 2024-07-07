@@ -1,4 +1,11 @@
-import { DecksListResponse, GetDecksArgs } from '@/services/decks/deck.types'
+import {
+  DecksListResponse,
+  GetDecksArgs,
+  NewDeckResponse,
+  PatchDeckArgs,
+  PostDeckArgs,
+  UpdatedDeckResponse,
+} from '@/services/decks/deck.types'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const flashcardsApi = createApi({
@@ -11,12 +18,12 @@ export const flashcardsApi = createApi({
   }),
   endpoints: builder => {
     return {
-      createDeck: builder.mutation<any, any>({
+      createDeck: builder.mutation<NewDeckResponse, PostDeckArgs>({
         providesTags: ['Decks'],
-        query: (name, ...arg) => ({
-          body: { name },
+        query: args => ({
+          body: { name: args.name },
           method: 'POST',
-          params: arg,
+          params: args,
           url: `/v1/decks`,
         }),
       }),
@@ -28,7 +35,7 @@ export const flashcardsApi = createApi({
           url: `v2/decks`,
         }),
       }),
-      removeDeck: builder.mutation<any, any>({
+      removeDeck: builder.mutation<PatchDeckArgs, string>({
         providesTags: ['Decks'],
         query: (id, ...arg) => ({
           method: 'DELETE',
@@ -36,13 +43,13 @@ export const flashcardsApi = createApi({
           url: `/v1/decks/${id}`,
         }),
       }),
-      updateDeck: builder.mutation<any, any>({
+      updateDeck: builder.mutation<UpdatedDeckResponse, PatchDeckArgs>({
         providesTags: ['Decks'],
-        query: (id, name, ...arg) => ({
-          body: { name },
+        query: args => ({
+          body: { name: args.name },
           method: 'PATCH',
-          params: arg,
-          url: `/v1/decks/${id}`,
+          params: args,
+          url: `/v1/decks/${args.id}`,
         }),
       }),
     }
