@@ -19,7 +19,7 @@ export const flashcardsApi = createApi({
   endpoints: builder => {
     return {
       createDeck: builder.mutation<NewDeckResponse, PostDeckArgs>({
-        providesTags: ['Decks'],
+        invalidatesTags: ['Decks'],
         query: args => ({
           body: { name: args.name },
           method: 'POST',
@@ -36,7 +36,7 @@ export const flashcardsApi = createApi({
         }),
       }),
       removeDeck: builder.mutation<PatchDeckArgs, string>({
-        providesTags: ['Decks'],
+        invalidatesTags: ['Decks'],
         query: (id, ...arg) => ({
           method: 'DELETE',
           params: arg,
@@ -44,7 +44,7 @@ export const flashcardsApi = createApi({
         }),
       }),
       updateDeck: builder.mutation<UpdatedDeckResponse, PatchDeckArgs>({
-        providesTags: ['Decks'],
+        invalidatesTags: ['Decks'],
         query: args => ({
           body: { name: args.name },
           method: 'PATCH',
