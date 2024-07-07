@@ -25,7 +25,7 @@ export const Decks = ({ decks }: Props) => {
   const handlerClick = () => {
     const title = 'New Deck'
 
-    createDeck(title)
+    createDeck({ name: title })
   }
 
   const removeHandler = (id: string) => {
