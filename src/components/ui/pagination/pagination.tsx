@@ -1,4 +1,4 @@
-import { MouseEvent, useMemo, useState } from 'react'
+import { MouseEvent, useMemo } from 'react'
 
 import { ArrowBack } from '@/assets/icons/components/arrowBack/arrowBack'
 import { ArrowForward } from '@/assets/icons/components/arrowForward/arrowForward'
@@ -8,7 +8,7 @@ import s from './pagination.module.scss'
 
 type Props = {
   activePage?: number
-  needToShowItems?: number
+  needToShowItems?: number | undefined
   onItemsPerPageChange: (itemsPerPage: number) => void
   setActivePage: (activePage: number) => void
   totalItems?: number
@@ -20,13 +20,15 @@ export const Pagination = ({
   needToShowItems,
   onItemsPerPageChange,
   setActivePage,
-  totalItems,
   totalPages,
 }: Props) => {
   // const [activePage, setActivePage] = useState(1)
 
   // const totalPages = Math.ceil(totalItems / needToShowItems)
-  const test = totalItems
+
+  const checkActivePage = activePage ? activePage : 1
+  const checkTotalPages = totalPages ? totalPages : 1
+  const checkNeedToShowItems = needToShowItems ? needToShowItems : 10
 
   const handleClick = (number: number) => (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -34,50 +36,50 @@ export const Pagination = ({
   }
 
   const decrementHandler = () => {
-    if (activePage && activePage > 1) {
-      setActivePage(activePage - 1)
+    if (checkActivePage > 1) {
+      setActivePage(checkActivePage - 1)
     }
   }
 
   const incrementHandler = () => {
-    if (activePage && activePage < totalPages) {
-      setActivePage(activePage + 1)
+    if (checkActivePage < checkTotalPages) {
+      setActivePage(checkActivePage + 1)
     }
   }
 
   const pageNumbers = useMemo(() => {
     const numbers = [1]
 
-    if (totalPages && totalPages > 5) {
-      if (activePage === 1 || activePage === 2 || activePage === 3) {
+    if (checkTotalPages > 5) {
+      if (checkActivePage === 1 || checkActivePage === 2 || checkActivePage === 3) {
         for (let i = 2; i <= 5; i++) {
           numbers.push(i)
         }
-        numbers.push(-2, totalPages)
+        numbers.push(-2, checkTotalPages)
       } else if (
-        activePage === totalPages - 1 ||
-        activePage === totalPages - 2 ||
-        activePage === totalPages
+        checkActivePage === checkTotalPages - 1 ||
+        checkActivePage === checkTotalPages - 2 ||
+        checkActivePage === checkTotalPages
       ) {
         numbers.push(-1)
-        for (let i = totalPages - 3; i <= totalPages; i++) {
+        for (let i = checkTotalPages - 3; i <= checkTotalPages; i++) {
           numbers.push(i)
         }
       } else {
         numbers.push(-1)
-        for (let i = activePage - 1; i <= activePage + 1; i++) {
+        for (let i = checkActivePage - 1; i <= checkActivePage + 1; i++) {
           numbers.push(i)
         }
-        numbers.push(-2, totalPages)
+        numbers.push(-2, checkTotalPages)
       }
     } else {
-      for (let i = 2; i <= totalPages; i++) {
+      for (let i = 2; i <= checkTotalPages; i++) {
         numbers.push(i)
       }
     }
 
     return numbers
-  }, [activePage, totalPages])
+  }, [checkActivePage, checkTotalPages])
 
   return (
     <div className={s.box}>
@@ -111,7 +113,7 @@ export const Pagination = ({
         <span>Показать </span>
         <CustomSelect
           onChange={newItemsPerPage => onItemsPerPageChange(newItemsPerPage)}
-          value={needToShowItems}
+          value={checkNeedToShowItems}
         />
         <span> на странице</span>
       </div>
