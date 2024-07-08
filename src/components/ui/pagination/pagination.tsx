@@ -8,21 +8,21 @@ import s from './pagination.module.scss'
 
 type Props = {
   activePage?: number
+  changeActivePage: (activePage: number) => void
   needToShowItems?: number | undefined
   onItemsPerPageChange: (itemsPerPage: number) => void
-  setActivePage: (activePage: number) => void
   totalItems?: number
   totalPages?: number
 }
 
 export const Pagination = ({
   activePage,
+  changeActivePage,
   needToShowItems,
   onItemsPerPageChange,
-  setActivePage,
   totalPages,
 }: Props) => {
-  // const [activePage, setActivePage] = useState(1)
+  // const [activePage, changeActivePage] = useState(1)
 
   // const totalPages = Math.ceil(totalItems / needToShowItems)
 
@@ -32,18 +32,18 @@ export const Pagination = ({
 
   const handleClick = (number: number) => (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-    setActivePage(number)
+    changeActivePage(number)
   }
 
   const decrementHandler = () => {
     if (checkActivePage > 1) {
-      setActivePage(checkActivePage - 1)
+      changeActivePage(checkActivePage - 1)
     }
   }
 
   const incrementHandler = () => {
     if (checkActivePage < checkTotalPages) {
-      setActivePage(checkActivePage + 1)
+      changeActivePage(checkActivePage + 1)
     }
   }
 
