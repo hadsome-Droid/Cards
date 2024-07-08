@@ -6,6 +6,13 @@ import { Pagination } from './pagination'
 
 const meta = {
   argTypes: {
+    activePage: {
+      control: { type: 'number' },
+      value: 1,
+    },
+    changeActivePage: {
+      action: 'onActivePage',
+    },
     needToShowItems: {
       control: { type: 'number' },
       value: 10,
@@ -16,6 +23,10 @@ const meta = {
     totalItems: {
       control: { type: 'number' },
       value: 50,
+    },
+    totalPages: {
+      control: { type: 'number' },
+      value: 10,
     },
   },
   component: Pagination,
@@ -29,69 +40,38 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
+    activePage: 1,
+    changeActivePage: () => {},
     needToShowItems: 10,
     onItemsPerPageChange: () => {},
-    totalItems: 50,
+    totalItems: 100,
+    totalPages: 5,
   },
   render: args => {
-    const [needToShowItems, setNeedToShowItems] = useState(args.needToShowItems)
+    const [needToShowItems, setNeedToShowItems] = useState(10)
+    const [activePage, setActivePage] = useState(1)
+    const checkTotalItems = args.totalItems ? args.totalItems : 50
 
     const handleItemsPerPageChange = (newItemsPerPage: number) => {
       args.onItemsPerPageChange(newItemsPerPage)
       setNeedToShowItems(newItemsPerPage)
     }
 
-    return (
-      <Pagination
-        needToShowItems={needToShowItems}
-        onItemsPerPageChange={handleItemsPerPageChange}
-        totalItems={args.totalItems}
-      />
-    )
-  },
-}
-
-export const WithManyPages: Story = {
-  args: {
-    needToShowItems: 10,
-    onItemsPerPageChange: () => {},
-    totalItems: 500,
-  },
-  render: args => {
-    const [needToShowItems, setNeedToShowItems] = useState(args.needToShowItems)
-
-    const handleItemsPerPageChange = (newItemsPerPage: number) => {
-      setNeedToShowItems(newItemsPerPage)
+    const handlerActivePage = (newActivePage: number) => {
+      args.changeActivePage(newActivePage)
+      setActivePage(newActivePage)
     }
 
-    return (
-      <Pagination
-        needToShowItems={needToShowItems}
-        onItemsPerPageChange={handleItemsPerPageChange}
-        totalItems={args.totalItems}
-      />
-    )
-  },
-}
-
-export const WithCustomItemsPerPage: Story = {
-  args: {
-    needToShowItems: 25,
-    onItemsPerPageChange: () => {},
-    totalItems: 50,
-  },
-  render: args => {
-    const [needToShowItems, setNeedToShowItems] = useState(args.needToShowItems)
-
-    const handleItemsPerPageChange = (newItemsPerPage: number) => {
-      setNeedToShowItems(newItemsPerPage)
-    }
+    const totalPages = Math.ceil(checkTotalItems / needToShowItems)
 
     return (
       <Pagination
+        activePage={activePage}
+        changeActivePage={handlerActivePage}
         needToShowItems={needToShowItems}
         onItemsPerPageChange={handleItemsPerPageChange}
         totalItems={args.totalItems}
+        totalPages={totalPages}
       />
     )
   },
