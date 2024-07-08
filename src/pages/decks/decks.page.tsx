@@ -14,8 +14,6 @@ const DecksPage = () => {
     name: search,
   })
 
-  console.log(data)
-
   if (isLoading) {
     return <h1>Loading...</h1>
   }
