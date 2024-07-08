@@ -14,8 +14,6 @@ const DecksPage = () => {
     name: search,
   })
 
-  console.log(data)
-
   if (isLoading) {
     return <h1>Loading...</h1>
   }
@@ -39,9 +37,9 @@ const DecksPage = () => {
         <Decks decks={data?.items} />
         <Pagination
           activePage={data?.pagination.currentPage}
+          changeActivePage={setActivePage}
           needToShowItems={data?.pagination.itemsPerPage}
           onItemsPerPageChange={setItemsPerPage}
-          setActivePage={setActivePage}
           totalItems={data?.pagination.totalItems}
           totalPages={data?.pagination.totalPages}
         />
