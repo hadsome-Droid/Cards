@@ -1,15 +1,17 @@
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card/card'
-import { DropdownMenuDemo } from '@/components/ui/dropDown/dropDown'
+import { Provider } from 'react-redux'
+
+import { Header } from '@/components/ui/header'
+import { Router } from '@/routers/router'
+
+import { store } from './services/store'
 
 export function App() {
   return (
-    <div>
-      {/*sdf*/}
-      {/*<Card>*/}
-      {/*  <Button>asdfadsf</Button>*/}
-      {/*</Card>*/}
-      <DropdownMenuDemo categoryOption={['Learn', 'Edit', 'Delete']} />
-    </div>
+    <Provider store={store}>
+      <div>
+        <Header />
+        <Router />
+      </div>
+    </Provider>
   )
 }

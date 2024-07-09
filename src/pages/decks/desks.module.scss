@@ -1,0 +1,89 @@
+.Root{
+  border-collapse: collapse;
+  width: 1006px;
+  margin: 0 auto;
+  border: 1px solid var(--color-dark-500);
+}
+
+@mixin cell-style() {
+  padding: 6px 8px 6px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-dark-500);
+}
+
+.HeadCell,.Cell{
+  @include cell-style;
+}
+
+.HeadCell{
+  background-color: var(--color-dark-500);
+}
+
+.Last{
+  @include cell-style;
+
+  padding: 5px 0 0;
+  color: var(--color-accent-900);
+  text-align: center;
+  vertical-align: middle;
+}
+
+@mixin common-control-styles{
+  all: unset;
+
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+
+  color: var(--color-light-100);
+
+  border-radius: 50%;
+}
+
+@mixin styles-by-color($color){
+  color: $color;
+  background-color: transparent;
+  box-shadow:none;
+}
+
+// миксин  для псевдоклассов :hover и :active
+@mixin hover-and-active-styles($hover-color, $active-color) {
+  &:hover {
+    @include styles-by-color($hover-color);
+  }
+
+  &:active {
+    @include styles-by-color($active-color);
+
+    filter: drop-shadow(0 0 2px $active-color);
+  }
+
+}
+
+.Play{
+  @include common-control-styles;
+
+  @include hover-and-active-styles(var(--color-success-700), var(--color-success-500));
+
+  &:focus{
+    outline: 2px solid var(--color-success-700);
+  }
+}
+
+.Edit{
+  @include common-control-styles;
+
+  @include hover-and-active-styles(var(--color-info-700), var(--color-info-100));
+}
+
+.Trash{
+  @include common-control-styles;
+
+  @include hover-and-active-styles(var(--color-danger-700), var(--color-danger-500));
+
+  margin-right: 0;
+
+  &:focus{
+    outline: 2px solid var(--color-danger-700);
+  }
+}
