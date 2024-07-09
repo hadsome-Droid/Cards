@@ -6,12 +6,14 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 
-import { SignUp } from '@/components/auth/loginForm/signUp/signUp'
+import { Auth } from '@/components/auth/auth'
+// import { SignUp } from '@/components/auth/loginForm/signUp/signUp'
 import DecksPage from '@/pages/decks/decks.page'
 
 const publicRoutes: RouteObject[] = [
   {
-    element: <SignUp buttonName={'HEy'} onSignIn={() => {}} onSubmit={() => {}} />,
+    // element: <SignUp buttonName={'HEy'} onSignIn={() => {}} onSubmit={() => {}} />,
+    element: <Auth />,
     path: '/login',
   },
 ]
