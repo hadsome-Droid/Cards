@@ -3,10 +3,19 @@ import { useState } from 'react'
 import { FormValues, SignIn } from '@/components/auth/loginForm/signIn/signIn'
 import { SignUp, SignUpFormValues } from '@/components/auth/loginForm/signUp/signUp'
 import { Card } from '@/components/ui/card/card'
-import { useCreateNewAccountMutation } from '@/services/auth/auth.service'
+import {
+  useAuthMeQuery,
+  useCreateNewAccountMutation,
+  useLoginMutation,
+} from '@/services/auth/auth.service'
 
 export const Auth = () => {
   const [createNewAccount] = useCreateNewAccountMutation()
+  const [login] = useLoginMutation()
+  const { data } = useAuthMeQuery()
+
+  //
+  console.log('+++++', data)
 
   const [dataTest, setDataTest] = useState<FormValues>()
   const [dataTest1, setDataTest1] = useState<SignUpFormValues>()
@@ -21,6 +30,7 @@ export const Auth = () => {
           buttonName={'Sign In'}
           onSignUp={() => setIsSignIn(!isSignIn)}
           onSubmit={values => {
+            login(values)
             setDataTest(values)
           }}
         />

@@ -9,6 +9,7 @@ import {
 import { Auth } from '@/components/auth/auth'
 // import { SignUp } from '@/components/auth/loginForm/signUp/signUp'
 import DecksPage from '@/pages/decks/decks.page'
+import { useAuthMeQuery } from '@/services/auth/auth.service'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -25,7 +26,7 @@ const privateRoutes: RouteObject[] = [
   },
 ]
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     children: privateRoutes,
     element: <PrivateRoutes />,
@@ -42,7 +43,9 @@ export function Router() {
 }
 
 function PrivateRoutes() {
-  const isAuthenticated = true
+  const { data } = useAuthMeQuery()
+
+  const isAuthenticated = !!data && !('success' in data)
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
 }
