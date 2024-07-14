@@ -6,12 +6,15 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 
-import { SignUp } from '@/components/auth/loginForm/signUp/signUp'
+import { Auth } from '@/components/auth/auth'
+// import { SignUp } from '@/components/auth/loginForm/signUp/signUp'
 import DecksPage from '@/pages/decks/decks.page'
+import { useAuthMeQuery } from '@/services/auth/auth.service'
 
 const publicRoutes: RouteObject[] = [
   {
-    element: <SignUp buttonName={'HEy'} onSignIn={() => {}} onSubmit={() => {}} />,
+    // element: <SignUp buttonName={'HEy'} onSignIn={() => {}} onSubmit={() => {}} />,
+    element: <Auth />,
     path: '/login',
   },
 ]
@@ -23,7 +26,7 @@ const privateRoutes: RouteObject[] = [
   },
 ]
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     children: privateRoutes,
     element: <PrivateRoutes />,
@@ -40,7 +43,9 @@ export function Router() {
 }
 
 function PrivateRoutes() {
-  const isAuthenticated = true
+  const { data } = useAuthMeQuery()
+
+  const isAuthenticated = !!data && !('success' in data)
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
 }
