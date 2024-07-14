@@ -1,12 +1,7 @@
 import React from 'react'
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
-import {
-  CheckIcon,
-  ChevronRightIcon,
-  DotFilledIcon,
-  HamburgerMenuIcon,
-} from '@radix-ui/react-icons'
+import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 
 import s from './dropDown.module.scss'
 
@@ -16,8 +11,8 @@ type PropsType = {
 }
 
 export const DropdownMenuDemo = ({ categoryOption, nameOfCategory }: PropsType) => {
-  const [bookmarksChecked, setBookmarksChecked] = React.useState(true)
-  const [urlsChecked, setUrlsChecked] = React.useState(false)
+  // const [bookmarksChecked, setBookmarksChecked] = React.useState(true)
+  // const [urlsChecked, setUrlsChecked] = React.useState(false)
   const [person, setPerson] = React.useState('pedro')
 
   return (
@@ -96,7 +91,7 @@ export const DropdownMenuDemo = ({ categoryOption, nameOfCategory }: PropsType) 
           <DropdownMenu.Label className={s.DropdownMenuLabel}>{nameOfCategory}</DropdownMenu.Label>
           <DropdownMenu.RadioGroup onValueChange={setPerson} value={person}>
             {categoryOption.map(el => (
-              <DropdownMenu.RadioItem className={s.DropdownMenuRadioItem} value={el}>
+              <DropdownMenu.RadioItem className={s.DropdownMenuRadioItem} key={el} value={el}>
                 {/*<DropdownMenu.ItemIndicator className={s.DropdownMenuItemIndicator}>*/}
                 {/*  <DotFilledIcon />*/}
                 {/*</DropdownMenu.ItemIndicator>*/}
