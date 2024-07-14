@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { Navigate } from 'react-router-dom'
 
-import { FormValues, SignIn } from '@/components/auth/loginForm/signIn/signIn'
-import { SignUp, SignUpFormValues } from '@/components/auth/loginForm/signUp/signUp'
+import { ROUTES } from '@/common/consts/routes'
+import { SignIn } from '@/components/auth/loginForm/signIn/signIn'
+import { SignUp } from '@/components/auth/loginForm/signUp/signUp'
 import { Card } from '@/components/ui/card/card'
 import {
   useAuthMeQuery,
@@ -12,16 +14,15 @@ import {
 export const Auth = () => {
   const [createNewAccount] = useCreateNewAccountMutation()
   const [login] = useLoginMutation()
-  const { data } = useAuthMeQuery()
+  const { data: me } = useAuthMeQuery()
 
-  //
-  console.log('+++++', data)
-
-  const [dataTest, setDataTest] = useState<FormValues>()
-  const [dataTest1, setDataTest1] = useState<SignUpFormValues>()
+  // const [dataTest, setDataTest] = useState<FormValues>()
+  // const [dataTest1, setDataTest1] = useState<SignUpFormValues>()
   const [isSignIn, setIsSignIn] = useState(true)
 
-  console.log(dataTest, '---', dataTest1)
+  if (me && !('success' in me)) {
+    return <Navigate to={ROUTES.base} />
+  }
 
   return (
     <Card>
@@ -31,7 +32,6 @@ export const Auth = () => {
           onSignUp={() => setIsSignIn(!isSignIn)}
           onSubmit={values => {
             login(values)
-            setDataTest(values)
           }}
         />
       ) : (
@@ -40,7 +40,6 @@ export const Auth = () => {
           onSignIn={() => setIsSignIn(!isSignIn)}
           onSubmit={values => {
             createNewAccount(values)
-            setDataTest1(values)
           }}
         />
       )}
