@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { Pagination } from '@/components/ui/pagination/pagination'
 import { Decks } from '@/pages/decks/decks'
-import { useGetDecksQuery } from '@/services/flashcards-api'
+import { useGetDecksQuery } from '@/services/decks/deck.service'
 
 const DecksPage = () => {
   const [search, setSearch] = useState('')

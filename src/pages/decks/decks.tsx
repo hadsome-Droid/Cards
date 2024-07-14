@@ -3,12 +3,12 @@ import { PlayCircle } from '@/assets/icons/components/playCircle/playCircle'
 import { Trash } from '@/assets/icons/components/trash/trash'
 import { Button } from '@/components/ui/button'
 import { Table } from '@/components/ui/table/table'
-import { Deck } from '@/services/decks/deck.types'
 import {
   useCreateDeckMutation,
   useRemoveDeckMutation,
   useUpdateDeckMutation,
-} from '@/services/flashcards-api'
+} from '@/services/decks/deck.service'
+import { Deck } from '@/services/decks/deck.types'
 
 import s from './desks.module.scss'
 
