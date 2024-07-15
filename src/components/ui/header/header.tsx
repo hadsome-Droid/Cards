@@ -7,8 +7,12 @@ import { useAuthMeQuery, useLogOutMutation } from '@/services/auth/auth.service'
 import s from './header.module.scss'
 
 export const Header = () => {
-  const { data: me } = useAuthMeQuery()
+  const { data: me, isLoading } = useAuthMeQuery()
   const [logOut] = useLogOutMutation()
+
+  if (isLoading) {
+    return console.log('Loading...')
+  }
   // const menuList = ['start', 'hello', 'end']
 
   const handlerLink = () => {
@@ -16,7 +20,7 @@ export const Header = () => {
   }
 
   const logoutHandler = () => {
-    return logOut('w')
+    return logOut()
   }
 
   return (
@@ -29,7 +33,17 @@ export const Header = () => {
         {/*true ? avatar : button*/}
         {me && !('success' in me) ? (
           // <DropdownMenuDemo categoryOption={menuList} nameOfCategory={'profile'} />
-          <Button onClick={logoutHandler}> Logout </Button>
+          <div
+            style={{
+              alignItems: 'center',
+              display: 'flex',
+              gap: '20px',
+              justifyContent: 'space-between',
+            }}
+          >
+            <h4>{me.name}</h4>
+            <Button onClick={logoutHandler}> Logout </Button>
+          </div>
         ) : (
           <Button onClick={handlerLink} variant={'secondary'}>
             Sign in

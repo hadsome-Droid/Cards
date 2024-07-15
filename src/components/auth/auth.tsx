@@ -14,14 +14,20 @@ import {
 export const Auth = () => {
   const [createNewAccount] = useCreateNewAccountMutation()
   const [login] = useLoginMutation()
-  const { data: me } = useAuthMeQuery()
+  const { data: me, isLoading } = useAuthMeQuery()
 
-  // const [dataTest, setDataTest] = useState<FormValues>()
-  // const [dataTest1, setDataTest1] = useState<SignUpFormValues>()
   const [isSignIn, setIsSignIn] = useState(true)
 
-  if (me && !('success' in me)) {
-    return <Navigate to={ROUTES.base} />
+  if (isLoading) {
+    return <h1>Loading...</h1>
+  }
+
+  if (!isLoading) {
+    if (me && !('success' in me)) {
+      console.log('auth navigate')
+
+      return <Navigate to={ROUTES.base} />
+    }
   }
 
   return (
