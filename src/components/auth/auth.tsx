@@ -24,8 +24,6 @@ export const Auth = () => {
 
   if (!isLoading) {
     if (me && !('success' in me)) {
-      console.log('auth navigate')
-
       return <Navigate to={ROUTES.base} />
     }
   }

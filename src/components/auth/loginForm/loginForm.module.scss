@@ -3,8 +3,8 @@
   box-shadow: none;
 }
 
-.loginForm{
- display: flex;
+.loginForm {
+  display: flex;
   flex-direction: column;
   align-items: center;
 
@@ -13,7 +13,7 @@
   border: 1px solid white;
 }
 
-.loginBtn{
+.loginBtn {
   @include button-styles;
 
   color: var(--color-accent-500);
@@ -24,26 +24,25 @@
     outline: none;
   }
 
-  &:hover{
+  &:hover {
     @include button-styles;
   }
 }
 
-.loginFieldSet{
+.loginFieldSet {
   display: flex;
   flex-direction: column;
   gap: 24px;
   align-items: center;
 
   border: none;
-  
 }
 
-.textField{
+.textField {
   color: black;
 }
 
-.forgotPassword{
+.forgotPassword {
   display: inline-block;
   width: 100%;
   padding-right: 12px;

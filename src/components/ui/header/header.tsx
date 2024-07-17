@@ -8,9 +8,8 @@ import s from './header.module.scss'
 
 export const Header = () => {
   const { data: me } = useAuthMeQuery()
-  const [logOut, { data: Out }] = useLogOutMutation()
+  const [logOut] = useLogOutMutation()
 
-  console.log('out', Out)
   // const menuList = ['start', 'hello', 'end']
 
   const handlerLink = () => {
