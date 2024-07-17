@@ -7,12 +7,10 @@ import { useAuthMeQuery, useLogOutMutation } from '@/services/auth/auth.service'
 import s from './header.module.scss'
 
 export const Header = () => {
-  const { data: me, isLoading } = useAuthMeQuery()
-  const [logOut] = useLogOutMutation()
+  const { data: me } = useAuthMeQuery()
+  const [logOut, { data: Out }] = useLogOutMutation()
 
-  if (isLoading) {
-    return console.log('Loading...')
-  }
+  console.log('out', Out)
   // const menuList = ['start', 'hello', 'end']
 
   const handlerLink = () => {
@@ -41,13 +39,24 @@ export const Header = () => {
               justifyContent: 'space-between',
             }}
           >
+            <p>Вылогинился обнови страницу =)</p>
             <h4>{me.name}</h4>
             <Button onClick={logoutHandler}> Logout </Button>
           </div>
         ) : (
-          <Button onClick={handlerLink} variant={'secondary'}>
-            Sign in
-          </Button>
+          <div
+            style={{
+              alignItems: 'center',
+              display: 'flex',
+              gap: '20px',
+              justifyContent: 'space-between',
+            }}
+          >
+            <p>Залогинился обнови страницу =)</p>
+            <Button onClick={handlerLink} variant={'secondary'}>
+              Sign in
+            </Button>
+          </div>
         )}
       </div>
     </div>

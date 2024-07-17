@@ -28,13 +28,14 @@ export const Decks = ({ decks }: Props) => {
   const [updateDeck] = useUpdateDeckMutation()
   const { data: me, isLoading } = useAuthMeQuery()
 
-  // if (!isLoading) {
-  //   if (me) {
-  //     console.log('heooo')
-  //
-  //     return <Navigate to={ROUTES.login} />
-  //   }
-  // }
+  if (!isLoading) {
+    // console.log('Deck', me)
+    if (!me) {
+      // console.log('heooo')
+
+      return <Navigate to={ROUTES.login} />
+    }
+  }
 
   const handlerClick = () => {
     const title = 'New Deck'

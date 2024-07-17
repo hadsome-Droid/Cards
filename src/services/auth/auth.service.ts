@@ -22,9 +22,14 @@ export const authService = flashcardsApi.injectEndpoints({
       }),
       logOut: builder.mutation({
         invalidatesTags: ['Me'],
-        async onQueryStarted(_: void) {
-          localStorage.removeItem('accessToken')
-          localStorage.removeItem('refreshToken')
+        async onQueryStarted(_: void, { queryFulfilled }) {
+          try {
+            await queryFulfilled
+            localStorage.removeItem('accessToken')
+            localStorage.removeItem('refreshToken')
+          } catch (err) {
+            console.error(err)
+          }
         },
         query: () => ({
           method: 'POST',
