@@ -17,12 +17,9 @@
 
   border-radius: 4px;
 
-
-
   &:focus {
     outline: 2px solid var(--color-info-500);
   }
-
 }
 
 @mixin button-styles($color) {
@@ -33,22 +30,20 @@
 .primary {
   @include button-styles(var(--color-accent-500));
 
-
-  &:disabled{
+  &:disabled {
     @include button-styles(var(--color-accent-900));
 
     color: var(--color-light-900);
   }
 
-  &:hover{
+  &:hover {
     @include button-styles(var(--color-accent-300));
   }
 }
 
-.primary:active{
+.primary:active {
   background-color: var(--color-accent-700);
 }
-
 
 .primary:disabled:hover {
   cursor: default;
@@ -60,14 +55,13 @@
 .secondary {
   @include button-styles(var(--color-dark-300));
 
-
-  &:disabled{
+  &:disabled {
     @include button-styles(var(--color-dark-700));
 
     color: var(--color-light-900);
   }
 
-  &:hover{
+  &:hover {
     @include button-styles(var(--color-dark-100));
   }
 }

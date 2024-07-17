@@ -1,4 +1,4 @@
-.Root{
+.Root {
   border-collapse: collapse;
   width: 1006px;
   margin: 0 auto;
@@ -11,15 +11,16 @@
   border-bottom: 1px solid var(--color-dark-500);
 }
 
-.HeadCell,.Cell{
+.HeadCell,
+.Cell {
   @include cell-style;
 }
 
-.HeadCell{
+.HeadCell {
   background-color: var(--color-dark-500);
 }
 
-.Last{
+.Last {
   @include cell-style;
 
   padding: 5px 0 0;
@@ -28,7 +29,7 @@
   vertical-align: middle;
 }
 
-@mixin common-control-styles{
+@mixin common-control-styles {
   all: unset;
 
   width: 25px;
@@ -40,10 +41,10 @@
   border-radius: 50%;
 }
 
-@mixin styles-by-color($color){
+@mixin styles-by-color($color) {
   color: $color;
   background-color: transparent;
-  box-shadow:none;
+  box-shadow: none;
 }
 
 // миксин  для псевдоклассов :hover и :active
@@ -57,33 +58,32 @@
 
     filter: drop-shadow(0 0 2px $active-color);
   }
-
 }
 
-.Play{
+.Play {
   @include common-control-styles;
 
   @include hover-and-active-styles(var(--color-success-700), var(--color-success-500));
 
-  &:focus{
+  &:focus {
     outline: 2px solid var(--color-success-700);
   }
 }
 
-.Edit{
+.Edit {
   @include common-control-styles;
 
   @include hover-and-active-styles(var(--color-info-700), var(--color-info-100));
 }
 
-.Trash{
+.Trash {
   @include common-control-styles;
 
   @include hover-and-active-styles(var(--color-danger-700), var(--color-danger-500));
 
   margin-right: 0;
 
-  &:focus{
+  &:focus {
     outline: 2px solid var(--color-danger-700);
   }
 }

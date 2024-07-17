@@ -1,8 +1,12 @@
+import { Navigate } from 'react-router-dom'
+
 import { Edit } from '@/assets/icons/components/edit/edit'
 import { PlayCircle } from '@/assets/icons/components/playCircle/playCircle'
 import { Trash } from '@/assets/icons/components/trash/trash'
+import { ROUTES } from '@/common/consts/routes'
 import { Button } from '@/components/ui/button'
 import { Table } from '@/components/ui/table/table'
+import { useAuthMeQuery } from '@/services/auth/auth.service'
 import {
   useCreateDeckMutation,
   useRemoveDeckMutation,
@@ -18,9 +22,20 @@ type Props = {
 
 export const Decks = ({ decks }: Props) => {
   const HeaderList = ['Name', 'Cards', 'Last Updated', 'Create By', '']
+
   const [createDeck] = useCreateDeckMutation()
   const [removeDeck] = useRemoveDeckMutation()
   const [updateDeck] = useUpdateDeckMutation()
+  const { data: me, isLoading } = useAuthMeQuery()
+
+  if (!isLoading) {
+    // console.log('Deck', me)
+    if (!me) {
+      // console.log('heooo')
+
+      return <Navigate to={ROUTES.login} />
+    }
+  }
 
   const handlerClick = () => {
     const title = 'New Deck'
