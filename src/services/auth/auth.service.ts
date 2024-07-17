@@ -5,6 +5,7 @@ export const authService = flashcardsApi.injectEndpoints({
   endpoints: builder => {
     return {
       authMe: builder.query<UserData, void>({
+        providesTags: ['Me'],
         query: () => ({
           method: 'GET',
           url: `/v1/auth/me`,
@@ -17,6 +18,22 @@ export const authService = flashcardsApi.injectEndpoints({
           method: 'POST',
           params: args,
           url: `/v1/auth/sign-up`,
+        }),
+      }),
+      logOut: builder.mutation({
+        invalidatesTags: ['Me'],
+        async onQueryStarted(_: void, { queryFulfilled }) {
+          try {
+            await queryFulfilled
+            localStorage.removeItem('accessToken')
+            localStorage.removeItem('refreshToken')
+          } catch (err) {
+            console.error(err)
+          }
+        },
+        query: () => ({
+          method: 'POST',
+          url: `/v2/auth/logout`,
         }),
       }),
       login: builder.mutation<LoginResponse, LoginArgs>({
@@ -41,4 +58,5 @@ export const authService = flashcardsApi.injectEndpoints({
   },
 })
 
-export const { useAuthMeQuery, useCreateNewAccountMutation, useLoginMutation } = authService
+export const { useAuthMeQuery, useCreateNewAccountMutation, useLogOutMutation, useLoginMutation } =
+  authService

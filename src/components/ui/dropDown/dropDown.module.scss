@@ -1,7 +1,3 @@
-//@import '@radix-ui/colors/black-alpha.css';
-//@import '@radix-ui/colors/mauve.css';
-//@import '@radix-ui/colors/violet.css';
-
 /* reset */
 button {
   all: unset;
@@ -69,7 +65,7 @@ button {
 
 .DropdownMenuSubTrigger[data-state='open'] {
   color: var(--violet-11);
-  background-color: mediumpurple;
+  background-color: silver;
 }
 
 .DropdownMenuItem[data-disabled],
@@ -85,12 +81,12 @@ button {
 .DropdownMenuRadioItem[data-highlighted],
 .DropdownMenuSubTrigger[data-highlighted] {
   color: mediumpurple;
-  background-color: mediumpurple;
+  background-color: silver;
 }
 
 .DropdownMenuLabel {
   padding-left: 25px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 25px;
   color: grey;
 }
@@ -98,7 +94,7 @@ button {
 .DropdownMenuSeparator {
   height: 1px;
   margin: 5px;
-  background-color: mediumpurple;
+  background-color: red;
 }
 
 .DropdownMenuItemIndicator {
@@ -154,7 +150,7 @@ button {
   color: grey;
 }
 
-@keyframes slideUpAndFade {
+@keyframes slide-up-and-fade {
   from {
     transform: translateY(2px);
     opacity: 0;
@@ -166,7 +162,7 @@ button {
   }
 }
 
-@keyframes slideRightAndFade {
+@keyframes slide-right-and-fade {
   from {
     transform: translateX(-2px);
     opacity: 0;
@@ -178,7 +174,7 @@ button {
   }
 }
 
-@keyframes slideDownAndFade {
+@keyframes slide-down-and-fade {
   from {
     transform: translateY(-2px);
     opacity: 0;
@@ -190,7 +186,7 @@ button {
   }
 }
 
-@keyframes slideLeftAndFade {
+@keyframes slide-left-and-fade {
   from {
     transform: translateX(2px);
     opacity: 0;

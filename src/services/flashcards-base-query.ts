@@ -1,3 +1,4 @@
+import { ROUTES } from '@/common/consts/routes'
 import { router } from '@/routers/router'
 import {
   BaseQueryFn,
@@ -67,7 +68,7 @@ export const baseQueryWithReauth: BaseQueryFn<
           result = await baseQuery(args, api, extraOptions)
         } else {
           // api.dispatch(loggedOut())
-          router.navigate('/login')
+          router.navigate(ROUTES.login)
         }
       } finally {
         release()
